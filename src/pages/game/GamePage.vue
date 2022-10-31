@@ -1,11 +1,12 @@
 <template>
   <div>
+    <button @click="resetGame">Reset</button>
     <input
       v-model="playerName"
       type="text"
       @keydown.enter="createPlayer"
     >
-    <button >
+    <button @click="createPlayer" >
       add player
     </button>
     <div v-if="players.length">
@@ -49,7 +50,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions('players', ['addPlayer', 'bindPlayersAct']),
+    ...mapActions('players', ['addPlayer', 'bindPlayersAct', 'reset']),
     createPlayer() {
       if (this.playerName) {
         this.addPlayer(this.playerName)
@@ -58,6 +59,9 @@ export default {
     },
     startGame() {
       this.bindPlayersAct(this.players);
+    },
+    resetGame() {
+      this.reset();
     }
   }
 }
