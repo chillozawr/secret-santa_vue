@@ -34,7 +34,7 @@ export default {
 				}
 			})
 			const playersId = playersRemake.map(item => item.id);
-			state.bindedPlayers = players.map(item => {
+			state.bindedPlayers = playersRemake.map(item => {
 				const currentID = playersId.shift();
 
 				for (let i = playersId.length - 1; i > 0; i--) {
@@ -55,6 +55,18 @@ export default {
 				"bindedPlayers",
 				JSON.stringify(state.bindedPlayers.map((item) => item))
 			)
+		},
+		resetGame(state) {
+			state.players = [];
+			state.bindedPlayers = [];
+			localStorage.setItem(
+				"players",
+				[]
+			);
+			localStorage.setItem(
+				"bindedPlayers",
+				[]
+			)
 		}
 	},
 	actions: {
@@ -64,5 +76,8 @@ export default {
 		bindPlayersAct({ commit }, players) {
 			commit('bindPlayers', players)
 		},
+		reset({commit}) {
+			commit('resetGame')
+		}
 	}
 }
