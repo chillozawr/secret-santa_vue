@@ -15,10 +15,5 @@ export default {
 				background
 			)
 		}
-	},
-	actions: {
-		setBack({commit}, back) {
-			commit('customization/setNewBackground', back)
-		}
 	}
 }
