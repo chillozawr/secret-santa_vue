@@ -1,16 +1,16 @@
 <template>
   <div class="backgrounds-wrapper">
     <div class="backgrounds">
-      <div @click="$store.commit('customization/setNewBackground', 'background: yellow')" class="background back back1"></div>
-      <div @click="$store.commit('customization/setNewBackground', 'background: green')" class="background back back2"></div>
-      <div @click="$store.commit('customization/setNewBackground', 'background: pink')" class="background back back3"></div>
-      <div @click="$store.commit('customization/setNewBackground', 'background: brown')" class="background back back4"></div>
+      <div @click="changeBack('background: yellow')" class="background back back1"></div>
+      <div @click="changeBack('background: green')" class="background back back2"></div>
+      <div @click="changeBack('background: pink')" class="background back back3"></div>
+      <div @click="changeBack('background: brown')" class="background back back4"></div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: 'CustomizationPage',
@@ -18,7 +18,13 @@ export default {
     ...mapState({
       currentBackground: state => state.customization
     })
-  }
+  },
+   methods: {
+    ...mapMutations('customization', ['setNewBackground']),
+     changeBack(newBack) {
+        this.setNewBackground(newBack)
+     }
+   }
 }
 </script>
 
